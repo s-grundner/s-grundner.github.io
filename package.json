@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.4"
+    "astro": "^5.16.4",
+    "mathjax": "^4.0.0"
   }
 }
