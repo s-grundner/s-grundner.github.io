@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import NotReleased from "../../components/NotReleased.astro";
+
+interface Props {
+	topic: any;
+	data: any;
+}
+
+export async function getStaticPaths() {
+	const topics = await getCollection("topics");
+	return topics.map((topic: any) => {
+		const slug = topic.slug;
+		const data = topic.data;
+		console.log(topic);
+		return { params: { slug }, props: { topic, data } };
+	});
+}
+
+const { topic, data } = Astro.props;
+const { Content } = await topic.render();
+---
+
+<Layout title={data.title ? data.title : "Uh Oh!"}>
+	{data.release ? <Content /> : <NotReleased />}
+</Layout>

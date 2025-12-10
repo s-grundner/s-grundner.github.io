@@ -1,0 +1,10 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const topics = await getCollection("topics", ({ data }: any) => data.released);
+---
+
+<Layout title="Topics">
+	<h1>Topics</h1>
+</Layout>
