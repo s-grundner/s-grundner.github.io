@@ -1,27 +1,31 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import NotReleased from "../../components/NotReleased.astro";
+import Overview from "../../components/Overview.astro";
 
 interface Props {
-	topic: any;
-	data: any;
+	entry: CollectionEntry<"topics">;
 }
 
 export async function getStaticPaths() {
 	const topics = await getCollection("topics");
-	return topics.map((topic: any) => {
-		const slug = topic.slug;
-		const data = topic.data;
-		console.log(topic);
-		return { params: { slug }, props: { topic, data } };
-	});
+	return topics.map((entry: CollectionEntry<"topics">) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
 }
 
-const { topic, data } = Astro.props;
-const { Content } = await topic.render();
+const { entry } = Astro.props;
+const { title } = entry.data;
+
+// set all files to release true for testing
+const release = import.meta.env.DEV || entry.data.release;
+
+const { Content } = await entry.render();
 ---
 
-<Layout title={data.title ? data.title : "Uh Oh!"}>
-	{data.release ? <Content /> : <NotReleased />}
-</Layout>
+<BaseLayout title={title}>
+	{release ? <Content /> : <NotReleased />}
+	{entry.id.includes("index") && <Overview entry={entry} />}
+</BaseLayout>

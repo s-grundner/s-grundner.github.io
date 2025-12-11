@@ -1,0 +1,28 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Files from "./Files.astro";
+import TopicCard from "./TopicCard.astro";
+
+interface Props {
+	entry: CollectionEntry<"topics">;
+}
+const { entry } = Astro.props;
+
+const cwd = entry.slug;
+
+const currentEntries = await getCollection(
+	"topics",
+	(e) => e.id !== entry.id && e.slug.startsWith(cwd),
+);
+
+const idxEntries = currentEntries.filter((e) => e.id.includes("index"));
+const fileEntries = currentEntries.filter((e) => !e.id.includes("index"));
+---
+
+<h2>Overview</h2>
+
+<div class="overview-topic-cards">
+	{idxEntries.map((e) => <TopicCard entry={e} />)}
+</div>
+
+<Files entries={fileEntries} />

@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	entries: CollectionEntry<"topics">[];
+}
+const { entries } = Astro.props;
+
+const sortedFiles = entries
+	.map((e) => ({
+		title: e.data.title,
+		slug: e.slug,
+		startingLetter: e.data.title.charAt(0).toUpperCase(),
+	}))
+	.sort((a, b) => a.title.localeCompare(b.title));
+
+const grouped = sortedFiles.reduce(
+	(acc: Record<string, typeof sortedFiles>, file) => {
+		const letter = file.startingLetter;
+		if (!acc[letter]) acc[letter] = [];
+		acc[letter].push(file);
+		return acc;
+	},
+	{} as Record<string, typeof sortedFiles>,
+);
+
+const letters = Object.keys(grouped).sort();
+---
+
+<h2>Ordered Content List</h2>
+
+{
+	letters.map((letter) => (
+		<div>
+			<h3>{letter}</h3>
+			<ul>
+				{grouped[letter]?.map((file) => (
+					<li>
+						<a href=`/topics/${file.slug}`>{file.title}</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	))
+}

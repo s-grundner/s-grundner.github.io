@@ -1,10 +1,16 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopicCard from "../../components/TopicCard.astro";
 
-const topics = await getCollection("topics", ({ data }: any) => data.released);
+const entries = await getCollection("topics", (entry) =>
+	entry.id.includes("index"),
+);
 ---
 
-<Layout title="Topics">
+<BaseLayout title="Topics">
 	<h1>Topics</h1>
-</Layout>
+	<div>
+		{entries.map((e) => <TopicCard entry={e} />)}
+	</div>
+</BaseLayout>

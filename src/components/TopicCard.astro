@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	entry: CollectionEntry<"topics">;
+}
+const { entry } = Astro.props;
+const { title, description } = entry.data;
+---
+
+<article class="topic-card">
+	<h2>{title}</h2>
+	<p>{description}</p>
+	<a href={`/topics/${entry.slug}/`}>Read more</a>
+</article>
