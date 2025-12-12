@@ -19,9 +19,7 @@ const idxEntries = currentEntries.filter((e) => e.id.includes("index"));
 const fileEntries = currentEntries.filter((e) => !e.id.includes("index"));
 ---
 
-<h2>Overview</h2>
-
-<div class="overview-topic-cards">
+<div>
 	{idxEntries.map((e) => <TopicCard entry={e} />)}
 </div>
 

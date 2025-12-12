@@ -27,11 +27,11 @@ const grouped = sortedFiles.reduce(
 const letters = Object.keys(grouped).sort();
 ---
 
-<h2>Ordered Content List</h2>
 
+<div class="file-list">
 {
 	letters.map((letter) => (
-		<div>
+		<div class="file-group">
 			<h3>{letter}</h3>
 			<ul>
 				{grouped[letter]?.map((file) => (
@@ -43,3 +43,4 @@ const letters = Object.keys(grouped).sort();
 		</div>
 	))
 }
+</div>

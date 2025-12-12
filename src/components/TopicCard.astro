@@ -9,7 +9,8 @@ const { title, description } = entry.data;
 ---
 
 <article class="topic-card">
-	<h2>{title}</h2>
-	<p>{description}</p>
-	<a href={`/topics/${entry.slug}/`}>Read more</a>
+	<a href={`/topics/${entry.slug}/`}>
+		<h2>{title}</h2>
+		<p>{description}</p>
+	</a>
 </article>
