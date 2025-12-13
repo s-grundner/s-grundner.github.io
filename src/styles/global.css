@@ -1,1 +1,70 @@
 @import "tailwindcss";
+
+@layer base {
+	code {
+		@apply bg-gray-200 px-1 rounded;
+		font-family: 'Courier New', Courier, monospace;
+	}
+
+	html,
+	body {
+		@apply bg-gray-100 text-gray-900;
+		font-family: 'Helvetica Neue', Arial, sans-serif;
+		line-height: 1.6;
+		background-color: #fff3ed;
+		color: #2d3748;
+	}
+
+	main {
+		@apply m-auto pb-10 pt-10;
+		max-width: 60%;
+	}
+}
+
+.article-toc {
+	position: sticky;
+	top: 0;
+	float: right;
+	@apply w-64 p-4 border rounded;
+}
+
+.markdown-wrapper {
+	h1 {
+		@apply text-5xl mt-4 mb-4 text-center;
+	}
+
+	h2 {
+		@apply text-4xl mt-6 mb-4;
+	}
+
+	h3 {
+		@apply text-3xl mt-5 mb-3;
+	}
+}
+
+.nav-bar {
+	background-color: #1a202c;
+	color: #edf2f7;
+}
+
+.nav-bar nav {
+	display: flex;
+	justify-content: space-around;
+	padding: 1rem;
+}
+
+.footer-wrapper {
+	background-color: #2d3748;
+	color: #a0aec0;
+	text-align: center;
+}
+
+.footer-section {
+	margin-bottom: 1rem;
+}
+
+.footer-wrapper footer {
+	display: flex;
+	justify-content: space-around;
+	padding: 1rem;
+}

@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
 import NotReleased from "../../components/NotReleased.astro";
 import Overview from "../../components/Overview.astro";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
 
 interface Props {
 	entry: CollectionEntry<"topics">;
@@ -16,8 +16,17 @@ export async function getStaticPaths() {
 	}));
 }
 
+type Heading = {
+	depth: number;
+	text: string;
+	slug: string;
+};
+
 const { entry } = Astro.props;
-const { title } = entry.data;
+
+const headings: Heading[] = entry.rendered?.metadata?.headings;
+
+console.log(headings);
 
 // set all files to release true for testing
 const release = import.meta.env.DEV || entry.data.release;
@@ -25,7 +34,7 @@ const release = import.meta.env.DEV || entry.data.release;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout title={title}>
+<MarkdownLayout title={entry.data.title} headings={headings}>
 	{release ? <Content /> : <NotReleased />}
 	{entry.id.includes("index") && <Overview entry={entry} />}
-</BaseLayout>
+</MarkdownLayout>

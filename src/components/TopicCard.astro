@@ -8,9 +8,11 @@ const { entry } = Astro.props;
 const { title, description } = entry.data;
 ---
 
-<article class="topic-card">
+<div class="border p-4 rounded-lg hover:shadow-lg transition-shadow">
 	<a href={`/topics/${entry.slug}/`}>
-		<h2>{title}</h2>
-		<p>{description}</p>
+		<h2 class="text-2xl mb-2">{title}</h2>
+		<p class="overflow-hidden text-ellipsis">
+			{description}
+		</p>
 	</a>
-</article>
+</div>

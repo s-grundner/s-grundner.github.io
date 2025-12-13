@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Files from "./Files.astro";
-import TopicCard from "./TopicCard.astro";
+import TopicCardGrid from "./TopicCardGrid.astro";
 
 interface Props {
 	entry: CollectionEntry<"topics">;
@@ -19,8 +19,7 @@ const idxEntries = currentEntries.filter((e) => e.id.includes("index"));
 const fileEntries = currentEntries.filter((e) => !e.id.includes("index"));
 ---
 
-<div>
-	{idxEntries.map((e) => <TopicCard entry={e} />)}
-</div>
-
+<h2 class="text-4xl mb-6">Themengebiete</h2>
+<TopicCardGrid entries={idxEntries} />
+<h2 class="text-4xl mb-6 mt-6">Einträge</h2>
 <Files entries={fileEntries} />

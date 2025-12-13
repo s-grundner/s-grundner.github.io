@@ -1,16 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import TopicCard from "../../components/TopicCard.astro";
+import TopicCardGrid from "../../components/TopicCardGrid.astro";
 
-const entries = await getCollection("topics", (entry) =>
-	entry.id.includes("index"),
+// Fetch only top-level index entries
+const entries = await getCollection(
+	"topics",
+	(entry) => entry.id.includes("index") && entry.slug.split("/").length === 1,
 );
 ---
 
 <BaseLayout title="Topics">
-	<h1>Topics</h1>
-	<div>
-		{entries.map((e) => <TopicCard entry={e} />)}
-	</div>
+	<h1 class="text-4xl mb-3">Themengebiete</h1>
+	<TopicCardGrid entries={entries} />
 </BaseLayout>

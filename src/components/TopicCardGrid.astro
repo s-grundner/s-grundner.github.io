@@ -1,0 +1,14 @@
+---
+import type { CollectionEntry } from "astro:content";
+import TopicCard from "./TopicCard.astro";
+
+interface Props {
+	entries: CollectionEntry<"topics">[];
+}
+
+const { entries } = Astro.props;
+---
+
+<div class="grid grid-cols-3 gap-6">
+	{entries.map((e) => <TopicCard entry={e} />)}
+</div>

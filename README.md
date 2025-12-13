@@ -1,32 +1,23 @@
-# Astro Starter Kit: Basics
-
-```sh
-npm create astro@latest -- --template basics
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# Static OpenStemBook Website built with Astro
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
 │   └── favicon.svg
 ├── src
-│   ├── assets
-│   │   └── astro.svg
 │   ├── components
-│   │   └── Welcome.astro
+│   ├── content
+│   │   └── topics <-- OSB Submodule with md files
 │   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+│   ├── pages
+│   ├── scripts
+│   └── styles
+│       └── global.css
+├── astro.config.mjs
 └── package.json
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -41,6 +32,8 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+For including the OpenStemBook content:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `git submodule update --init --recursive`
+- `git sparse-checkout set OpenStemBook/`
+- `git read-tree -mu HEAD` (after Changing the sparse-checkout file)
