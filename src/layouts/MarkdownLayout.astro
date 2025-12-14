@@ -1,22 +1,18 @@
 ---
 import TOC from "../components/TOC.astro";
-import BaseLayout from "./BaseLayout.astro";
 import "../styles/callout.css";
 
 interface Props {
-	title: string;
 	headings: {
 		depth: number;
 		text: string;
 		slug: string;
 	}[];
 }
-const { headings, title } = Astro.props;
+const { headings } = Astro.props;
 ---
 
-<BaseLayout title={title}>
-	<article>
-		{headings && headings.length > 0 && <TOC headings={headings} />}
-		<div class="markdown-wrapper"><slot /></div>
-	</article>
-</BaseLayout>
+<article>
+	{headings && headings.length > 0 && <TOC headings={headings} />}
+	<div class="markdown-wrapper"><slot /></div>
+</article>

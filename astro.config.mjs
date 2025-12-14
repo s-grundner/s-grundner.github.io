@@ -3,7 +3,7 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import remarkMath from 'remark-math';
 import remarkCallout from "@r4ai/remark-callout";
-import rehypeMathjaxChtml from 'rehype-mathjax/chtml';
+import rehypeMathjax from 'rehype-mathjax';
 import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-links";
 import tailwindcss from '@tailwindcss/vite';
 
@@ -15,11 +15,7 @@ export default defineConfig({
 	markdown: {
 		rehypePlugins: [
 			rehypeAstroRelativeMarkdownLinks,
-			[rehypeMathjaxChtml, {
-				chtml: {
-					fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
-				}
-			}]
+			[rehypeMathjax, {}]
 		],
 		remarkPlugins: [
 			remarkMath,
@@ -27,6 +23,12 @@ export default defineConfig({
 			remarkStringify,
 			remarkCallout
 		],
+	},
+	shikiConfig: {
+		themes: {
+			light: 'github-light',
+			dark: 'github-dark',
+		}
 	},
 });
 

@@ -1,23 +1,22 @@
 @import "tailwindcss";
 
 @layer base {
-	code {
-		@apply bg-gray-200 px-1 rounded;
-		font-family: 'Courier New', Courier, monospace;
-	}
 
 	html,
 	body {
-		@apply bg-gray-100 text-gray-900;
+		@apply bg-orange-100 text-gray-900;
 		font-family: 'Helvetica Neue', Arial, sans-serif;
 		line-height: 1.6;
-		background-color: #fff3ed;
-		color: #2d3748;
 	}
 
 	main {
 		max-width: 60%;
 		@apply m-auto pb-10 pt-10;
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-around;
 	}
 }
 
@@ -44,39 +43,37 @@
 	ul {
 		@apply list-disc list-inside mb-4;
 	}
-}
 
-/* Prevent line breaks for inline math */
-mjx-container {
-	display: inline !important;
-	margin: 0 0.1em;
-	text-align: center;
-}
+	mjx-container[jax="SVG"] {
+		display: inline-block;
+		vertical-align: middle;
+	}
 
+	table {
+		@apply table-auto border-collapse border mb-4;
+		width: 100%;
+
+		th,
+		td {
+			@apply border px-4 py-2;
+		}
+
+		th {
+			@apply bg-orange-200;
+		}
+	}
+
+	a {
+		@apply underline;
+	}
+}
 
 .nav-bar {
-	background-color: #1a202c;
-	color: #edf2f7;
-}
-
-.nav-bar nav {
+	@apply p-4;
 	display: flex;
 	justify-content: space-around;
-	padding: 1rem;
-}
-
-.footer-wrapper {
-	background-color: #2d3748;
-	color: #a0aec0;
-	text-align: center;
 }
 
 .footer-section {
-	margin-bottom: 1rem;
-}
-
-.footer-wrapper footer {
-	display: flex;
-	justify-content: space-around;
-	padding: 1rem;
+	@apply mb-4;
 }
