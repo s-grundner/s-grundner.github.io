@@ -26,8 +26,6 @@ const { entry } = Astro.props;
 
 const headings: Heading[] = entry.rendered?.metadata?.headings;
 
-console.log(headings);
-
 // set all files to release true for testing
 const release = import.meta.env.DEV || entry.data.release;
 

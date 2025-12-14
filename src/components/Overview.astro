@@ -19,7 +19,11 @@ const idxEntries = currentEntries.filter((e) => e.id.includes("index"));
 const fileEntries = currentEntries.filter((e) => !e.id.includes("index"));
 ---
 
+{idxEntries.length > 0 && 
 <h2 class="text-4xl mb-6">Themengebiete</h2>
 <TopicCardGrid entries={idxEntries} />
-<h2 class="text-4xl mb-6 mt-6">Einträge</h2>
+}
+{fileEntries.length > 0 && 
+<h2 class="text-4xl mb-6">Einträge</h2>
 <Files entries={fileEntries} />
+}

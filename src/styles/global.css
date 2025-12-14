@@ -16,8 +16,8 @@
 	}
 
 	main {
-		@apply m-auto pb-10 pt-10;
 		max-width: 60%;
+		@apply m-auto pb-10 pt-10;
 	}
 }
 
@@ -40,7 +40,19 @@
 	h3 {
 		@apply text-3xl mt-5 mb-3;
 	}
+
+	ul {
+		@apply list-disc list-inside mb-4;
+	}
 }
+
+/* Prevent line breaks for inline math */
+mjx-container {
+	display: inline !important;
+	margin: 0 0.1em;
+	text-align: center;
+}
+
 
 .nav-bar {
 	background-color: #1a202c;
