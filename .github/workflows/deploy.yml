@@ -21,7 +21,17 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
         with:
-          submodules: 'true'
+          submodules: true
+      - name: Sparse checkout submodule
+        run: |
+          cd src/content/topics
+
+          # Reconfigure the submodule
+          git sparse-checkout init --cone
+          git sparse-checkout set --stdin < ../../../ci/topics.sparse-checkout
+
+          # Ensure HEAD is correct
+          git checkout $(git rev-parse HEAD)
       - name: Install, build, and upload your site
         uses: withastro/action@v5
         # with:
