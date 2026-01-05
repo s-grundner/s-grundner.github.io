@@ -41,12 +41,25 @@
 	}
 
 	ul {
-		@apply list-disc list-inside mb-4;
+		@apply list-disc list-inside;
+
+		ul {
+			@apply pl-6;
+		}
 	}
 
 	mjx-container[jax="SVG"] {
 		display: inline-block;
 		vertical-align: middle;
+	}
+
+	mjx-container[display="true"] {
+		@apply lg:overflow-x-auto overflow-x-scroll;
+
+		&>svg {
+			display: block;
+			margin: auto;
+		}
 	}
 
 	table {
