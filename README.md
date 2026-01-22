@@ -1,5 +1,7 @@
 # Static OpenStemBook Website built with Astro
 
+> Currently in Development
+
 ## 🚀 Project Structure
 
 ```text
