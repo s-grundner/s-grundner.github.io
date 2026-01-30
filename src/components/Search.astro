@@ -1,0 +1,46 @@
+<!-- Search.astro -->
+<custom-search>
+	<input data-search-inp type="text" />
+	<ul data-search-result></ul>
+</custom-search>
+
+<script>
+	import type { OutputBaseSearchable } from "astro-fuse";
+
+	class CustomSearch extends HTMLElement {
+		list = this.querySelector<HTMLUListElement>("[data-search-result]");
+
+		constructor() {
+			super();
+
+			this.querySelector<HTMLInputElement>(
+				"[data-search-inp]",
+			)?.addEventListener("input", this.onInput.bind(this));
+		}
+
+		async onInput(e: Event) {
+			const { list } = this;
+
+			if (!list) {
+				return;
+			}
+
+			// create fuse instance from index
+			const { loadFuse } = await import("astro-fuse/client");
+			const fuse = await loadFuse();
+
+			const results = fuse.search<OutputBaseSearchable>(
+				(e.target as HTMLInputElement).value.trim(),
+			);
+
+			list.innerHTML = results
+				.map(
+					({ item }) =>
+						`<li><a href="${item.pathname}">${item.frontmatter.title}</a></li>`,
+				)
+				.join("");
+		}
+	}
+
+	customElements.define("custom-search", CustomSearch);
+</script>

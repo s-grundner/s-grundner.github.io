@@ -10,9 +10,10 @@ interface Props {
 	}[];
 }
 const { headings } = Astro.props;
+const show = false;
 ---
 
 <article>
-	{headings && headings.length > 0 && <TOC headings={headings} />}
+	{show && headings && headings.length > 0 && <TOC headings={headings} />}
 	<div class="markdown-wrapper"><slot /></div>
 </article>

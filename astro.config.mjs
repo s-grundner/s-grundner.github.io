@@ -9,6 +9,7 @@ import rehypeMathjax from 'rehype-mathjax';
 import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-links";
 
 import tailwindcss from '@tailwindcss/vite';
+import fuse from 'astro-fuse';
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,5 +35,6 @@ export default defineConfig({
 			dark: 'github-dark',
 		},
 	},
+	integrations: [fuse(['content'])],
 });
 
