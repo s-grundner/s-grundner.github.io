@@ -4,13 +4,13 @@
 
 	html,
 	body {
-		@apply bg-orange-100 text-gray-900;
-		font-family: 'Helvetica Neue', Arial, sans-serif;
+		@apply bg-orange-50 text-gray-900;
+		font-family: 'Noto Sans', sans-serif;
 		line-height: 1.6;
 	}
 
 	main {
-		max-width: 60%;
+		max-width: 75%;
 		@apply m-auto pb-10 pt-10;
 	}
 
@@ -20,16 +20,33 @@
 	}
 }
 
-.article-toc {
+.sidebar {
+	@apply w-64 p-4;
 	position: sticky;
-	top: 0;
-	float: right;
-	@apply w-64 p-4 border rounded;
+	top: 10px;
+	border: 1px solid #ccc;
+	border-radius: 0.5rem;
+	align-self: flex-start;
+	margin-left: 10px;
+}
+
+.toc-item {
+	&.depth-3 {
+		@apply ml-4;
+	}
+
+	&.depth-4 {
+		@apply ml-8;
+	}
+}
+
+.pillbox {
+	@apply inline-block px-2 rounded-full bg-indigo-200 mb-1;
 }
 
 .markdown-wrapper {
 	h1 {
-		@apply text-5xl mt-4 mb-4 text-center;
+		@apply text-5xl mt-4 mb-4;
 	}
 
 	h2 {

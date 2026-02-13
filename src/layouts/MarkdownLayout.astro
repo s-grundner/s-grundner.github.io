@@ -1,5 +1,7 @@
 ---
+import Separator from "../components/Separator.astro";
 import TOC from "../components/TOC.astro";
+import Tags from "../components/Tags.astro";
 import "../styles/callout.css";
 
 interface Props {
@@ -8,12 +10,21 @@ interface Props {
 		text: string;
 		slug: string;
 	}[];
+	tags: string[];
 }
-const { headings } = Astro.props;
-const show = false;
+
+const { headings, tags } = Astro.props;
+const needsTOC = headings && headings.length > 1;
+
+const needsTags = tags && tags.length > 0;
 ---
 
-<article>
-	{show && headings && headings.length > 0 && <TOC headings={headings} />}
-	<div class="markdown-wrapper"><slot /></div>
+<article class="flex">
+	<div class="markdown-wrapper flex-1"><slot /></div>
+
+	<div class="sidebar">
+		{needsTOC && <TOC headings={headings} />}
+		{needsTOC && needsTags && <Separator />}
+		{needsTags && <Tags tags={tags} />}
+	</div>
 </article>
