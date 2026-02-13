@@ -1,9 +1,12 @@
 ---
+import Search from "../components/Search.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = "Main Page";
 ---
 
 <BaseLayout title={title}>
 	<h1 class="text-4xl text-center">Open Stem Book</h1>
-	<a href="/topics/">Themengebiete durchsuchen</a>
+	<div class="mt-6">
+		<Search />
+	</div>
 </BaseLayout>

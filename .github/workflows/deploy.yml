@@ -1,11 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ prod ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
@@ -28,7 +25,7 @@ jobs:
 
           # Reconfigure the submodule
           git sparse-checkout init --cone
-          git sparse-checkout set --stdin < ../../../ci/topics.sparse-checkout
+          git sparse-checkout set --stdin < ../../../.github/topics.sparse-checkout
 
           # Ensure HEAD is correct
           git checkout $(git rev-parse HEAD)

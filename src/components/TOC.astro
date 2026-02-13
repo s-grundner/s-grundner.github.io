@@ -11,14 +11,16 @@ const { headings } = Astro.props;
 
 {
 	(
-		<nav class="article-toc">
+		<nav>
 			<h3 class="text-2xl">Inhalt</h3>
 			<ul>
-				{headings.map((heading) => (
-					<li class={`toc-item depth-${heading.depth}`}>
-						<a href={`#${heading.slug}`}>{heading.text}</a>
-					</li>
-				))}
+				{headings
+					.filter((h) => h.depth > 1)
+					.map((heading) => (
+						<li class={`toc-item depth-${heading.depth}`}>
+							<a href={`#${heading.slug}`}>{heading.text}</a>
+						</li>
+					))}
 			</ul>
 		</nav>
 	)

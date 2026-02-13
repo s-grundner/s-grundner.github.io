@@ -1,0 +1,15 @@
+{
+	"name": "remark-iconize",
+	"type": "module",
+	"version": "1.0.0",
+	"main": "index.js",
+	"files": [
+		"index.js"
+	],
+	"dependencies": {
+		"lucide": "^0.564.0",
+		"mdast-util-find-and-replace": "^3.0.2",
+		"mdast-util-mdx-jsx": "^3.2.0",
+		"remark": "^15.0.1"
+	}
+}

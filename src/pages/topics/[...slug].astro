@@ -27,6 +27,7 @@ const { entry } = Astro.props;
 
 const headings: Heading[] =
 	(entry.rendered?.metadata?.headings as Heading[]) || [];
+const tags: string[] = entry.data.tags || [];
 
 // set all files to release true for testing
 const release = import.meta.env.DEV || entry.data.release;
@@ -37,7 +38,7 @@ const { Content } = await entry.render();
 <BaseLayout title={entry.data.title}>
 	{
 		release ? (
-			<MarkdownLayout headings={headings}>
+			<MarkdownLayout headings={headings} tags={tags}>
 				<Content />
 			</MarkdownLayout>
 		) : (

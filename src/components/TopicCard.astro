@@ -9,10 +9,12 @@ const { title, description } = entry.data;
 ---
 
 <a
-	class="border p-4 rounded-lg hover:shadow-lg transition-shadow"
+	class="block p-4 border-2 border-amber-700/30 rounded-lg shadow-sm shadow-amber-700/30 hover:bg-amber-500/30 hover:shadow-lg transition-all bg-amber-500/20 h-full"
 	href={`/topics/${entry.slug}/`}
 >
-	<h3 class="text-2xl mb-2">{title}</h3>
+	<h3 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
+		{title}
+	</h3>
 	<p class="overflow-hidden text-ellipsis">
 		{description}
 	</p>
