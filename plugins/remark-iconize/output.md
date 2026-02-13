@@ -2,12 +2,12 @@
 
 This is a test file for the remark-iconize plugin.
 
-Here is an icon: <ArrowBigRightDash />
+Here is an icon: 
 
-Here is another one: <Check />
+Here is another one: 
 
 And some text without icons.
 
-<ArrowBigRightDash /> at the start.
+ at the start.
 
-End with <Check />
+End with 

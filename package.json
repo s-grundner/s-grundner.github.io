@@ -10,6 +10,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
     "@lucide/astro": "^0.564.0",
     "@r4ai/remark-callout": "^0.6.2",
     "@tailwindcss/vite": "^4.1.17",
