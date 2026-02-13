@@ -1,46 +1,104 @@
-<!-- Search.astro -->
-<custom-search>
-	<input data-search-inp type="text" />
-	<ul data-search-result></ul>
-</custom-search>
+<div class="search-container relative">
+	<input
+		id="search-input"
+		type="text"
+		placeholder="Search..."
+		class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+	/>
+	<ul
+		id="search-results"
+		class="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
+	>
+	</ul>
+</div>
 
 <script>
-	import type { OutputBaseSearchable } from "astro-fuse";
+	const searchInput = document.getElementById(
+		"search-input",
+	) as HTMLInputElement;
+	const searchResults = document.getElementById("search-results");
 
-	class CustomSearch extends HTMLElement {
-		list = this.querySelector<HTMLUListElement>("[data-search-result]");
+	let fuse: any;
 
-		constructor() {
-			super();
+	async function initSearch() {
+		console.log("Initializing search...");
+		// Dynamic import to avoid bundling Fuse.js in the initial chunk if possible,
+		// though strictly Astro might bundle it anyway.
+		// But it's good practice for large libraries.
+		const Fuse = (await import("fuse.js")).default;
 
-			this.querySelector<HTMLInputElement>(
-				"[data-search-inp]",
-			)?.addEventListener("input", this.onInput.bind(this));
-		}
-
-		async onInput(e: Event) {
-			const { list } = this;
-
-			if (!list) {
-				return;
+		try {
+			const response = await fetch("/fuse.json");
+			if (!response.ok) {
+				throw new Error(
+					`Failed to fetch index: ${response.statusText}`,
+				);
 			}
+			const data = await response.json();
 
-			// create fuse instance from index
-			const { loadFuse } = await import("astro-fuse/client");
-			const fuse = await loadFuse();
+			const options = {
+				keys: [
+					"frontmatter.title",
+					"content",
+					"frontmatter.alias",
+					"frontmatter.description",
+				],
+				includeScore: true,
+				threshold: 0.4,
+				ignoreLocation: true, // Search through all content
+			};
 
-			const results = fuse.search<OutputBaseSearchable>(
-				(e.target as HTMLInputElement).value.trim(),
-			);
-
-			list.innerHTML = results
-				.map(
-					({ item }) =>
-						`<li><a href="${item.pathname}">${item.frontmatter.title}</a></li>`,
-				)
-				.join("");
+			// Initialize Fuse with the list from our custom endpoint
+			fuse = new Fuse(data.list, options);
+			console.log("Fuse initialized with", data.list.length, "items");
+		} catch (error) {
+			console.error("Error initializing search:", error);
 		}
 	}
 
-	customElements.define("custom-search", CustomSearch);
+	// Load index on interaction to save bandwidth
+	searchInput?.addEventListener("focus", initSearch, { once: true });
+
+	searchInput?.addEventListener("input", () => {
+		if (!fuse) {
+			return;
+		}
+
+		const query = searchInput.value;
+		console.log("Searching for:", query);
+		const results = fuse.search(query);
+		// console.log("Results:", results);
+
+		if (searchResults) {
+			searchResults.innerHTML = "";
+
+			if (results.length > 0) {
+				searchResults.classList.remove("hidden");
+				results.slice(0, 10).forEach((result: any) => {
+					const item = result.item;
+					const li = document.createElement("li");
+					li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
+					li.innerHTML = `
+            <a href="${item.pathname || item.url}" class="block">
+              <div class="font-bold text-gray-800">${item.frontmatter?.title || "Untitled"}</div>
+              <div class="text-sm text-gray-600 truncate">${item.content ? item.content.substring(0, 60) + "..." : ""}</div>
+            </a>
+          `;
+					searchResults.appendChild(li);
+				});
+			} else {
+				searchResults.classList.add("hidden");
+			}
+		}
+	});
+
+	// Hide results when clicking outside
+	document.addEventListener("click", (e) => {
+		if (
+			!searchInput?.contains(e.target as Node) &&
+			!searchResults?.contains(e.target as Node)
+		) {
+			searchResults?.classList.add("hidden");
+		}
+	});
 </script>

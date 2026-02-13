@@ -6,9 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@lucide/astro": "^0.564.0",
     "@r4ai/remark-callout": "^0.6.2",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
@@ -22,5 +24,8 @@
     "remark-rehype": "^11.1.2",
     "remark-stringify": "^11.0.0",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.1"
   }
 }
