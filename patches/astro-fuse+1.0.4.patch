@@ -1,0 +1,48 @@
+diff --git a/node_modules/astro-fuse/dist/index.mjs b/node_modules/astro-fuse/dist/index.mjs
+index 7c621c1..d11eda7 100644
+--- a/node_modules/astro-fuse/dist/index.mjs
++++ b/node_modules/astro-fuse/dist/index.mjs
+@@ -1,6 +1,7 @@
+ // src/index.ts
+ import { existsSync as existsSync3 } from "fs";
+ import { join as join3, relative as relative2 } from "path";
++import { fileURLToPath } from "url";
+ 
+ // src/basedOnOutput.ts
+ import * as cheerio from "cheerio";
+@@ -13,7 +14,7 @@ function basedOnOutput({
+   config,
+   filename
+ }) {
+-  const outDir = config.outDir.pathname;
++  const outDir = fileURLToPath(config.outDir);
+   const outputPath = join(outDir, filename);
+   return {
+     configureServer(server) {
+@@ -85,7 +86,7 @@ ${String(err)}`);
+ \`${filename}\` not created.`);
+     return;
+   }
+-  const outDir = config.outDir.pathname;
++  const outDir = fileURLToPath(config.outDir);
+   const outputPath = join(outDir, filename);
+   if (!existsSync(outDir)) {
+     mkdirSync(dirname(outputPath));
+@@ -161,7 +162,7 @@ function basedOnSource({
+   keys,
+   options
+ }) {
+-  const outDir = config.outDir.pathname;
++  const outDir = fileURLToPath(config.outDir);
+   const outputPath = join2(outDir, filename);
+   if (!existsSync2(outDir)) {
+     mkdirSync2(dirname2(outputPath));
+@@ -298,7 +299,7 @@ function astroFuse(keys, options) {
+         config = cfg;
+       },
+       "astro:config:setup": ({ config: config2, updateConfig }) => {
+-        outDir = config2.outDir.pathname;
++        outDir = fileURLToPath(config2.outDir);
+         if (basedOn === "source") {
+           updateConfig({
+             vite: {
