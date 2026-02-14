@@ -7,7 +7,7 @@ export const GET: APIRoute = async () => {
 	const list = topics.map((topic) => ({
 		frontmatter: {
 			title: topic.data.title,
-			alias: topic.data.alias,
+			aliases: topic.data.aliases,
 			description: topic.data.description,
 			tags: topic.data.tags,
 		},

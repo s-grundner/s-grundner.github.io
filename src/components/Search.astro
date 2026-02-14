@@ -40,7 +40,7 @@
 				keys: [
 					"frontmatter.title",
 					"content",
-					"frontmatter.alias",
+					"frontmatter.aliases",
 					"frontmatter.description",
 				],
 				includeScore: true,
@@ -76,12 +76,13 @@
 				searchResults.classList.remove("hidden");
 				results.slice(0, 10).forEach((result: any) => {
 					const item = result.item;
+					console.log(item);
 					const li = document.createElement("li");
 					li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
 					li.innerHTML = `
             <a href="${item.pathname || item.url}" class="block">
               <div class="font-bold text-gray-800">${item.frontmatter?.title || "Untitled"}</div>
-              <div class="text-sm text-gray-600 truncate">${item.content ? item.content.substring(0, 60) + "..." : ""}</div>
+              <div class="text-sm text-gray-600 truncate">${item.frontmatter?.aliases || "" }</div>
             </a>
           `;
 					searchResults.appendChild(li);

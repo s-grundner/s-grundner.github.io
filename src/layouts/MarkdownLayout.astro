@@ -21,9 +21,11 @@ const needsTags = tags && tags.length > 0;
 
 <article class="flex">
 	<div class="markdown-wrapper flex-1"><slot /></div>
-	<div class="sidebar">
-		{needsTOC && <TOC headings={headings} />}
-		{needsTOC && needsTags && <Separator />}
-		{needsTags && <Tags tags={tags} />}
-	</div>
+	{ needsTOC && needsTags &&
+		<div class="sidebar">
+			{needsTOC && <TOC headings={headings} />}
+			{needsTOC && needsTags && <Separator />}
+			{needsTags && <Tags tags={tags} />}
+		</div>
+	}
 </article>
