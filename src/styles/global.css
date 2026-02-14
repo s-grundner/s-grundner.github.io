@@ -103,6 +103,14 @@
 	}
 }
 
+.lucide-icon-svg {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	vertical-align: -0.125em;
+	stroke: currentColor;
+}
+
 .nav-bar {
 	@apply p-4;
 	display: flex;

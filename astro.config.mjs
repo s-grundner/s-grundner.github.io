@@ -11,7 +11,6 @@ import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-lin
 import tailwindcss from '@tailwindcss/vite';
 import remarkIconize from './plugins/remark-iconize';
 
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://s-grundner.github.io',
