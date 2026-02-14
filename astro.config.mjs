@@ -4,7 +4,6 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import remarkMath from 'remark-math';
 import remarkCallout from "@r4ai/remark-callout";
-import remarkComment from "remark-comment";
 
 import rehypeMathjax from 'rehype-mathjax';
 import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-links";
