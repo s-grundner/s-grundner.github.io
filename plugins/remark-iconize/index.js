@@ -14,7 +14,7 @@ export default function remarkIconize() {
 			(_, iconName) => {
 				const svg = icons[iconName]
 					.replace(/\n\s*/g, '')
-					.replace('<svg', '<svg style="display:inline-block;vertical-align:middle"');
+					.replace('<svg', '<svg class="lucide-icon-svg"');
 				
 				if (!svg) return _;
 
