@@ -17,6 +17,7 @@
     "astro": "^5.16.4",
     "astro-fuse": "^1.0.4",
     "astro-rehype-relative-markdown-links": "^0.18.1",
+    "lucide-static": "^0.564.0",
     "mathjax": "^4.0.0",
     "rehype-mathjax": "^7.1.0",
     "remark-math": "^6.0.0",
