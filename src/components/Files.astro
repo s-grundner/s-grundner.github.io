@@ -18,7 +18,9 @@ const sortedFiles = entries
 const grouped = sortedFiles.reduce(
 	(acc: Record<string, typeof sortedFiles>, file) => {
 		const letter = file.startingLetter;
-		if (!acc[letter]) acc[letter] = [];
+		if (!acc[letter]) {
+			acc[letter] = [];
+		}
 		acc[letter].push(file);
 		return acc;
 	},
@@ -29,10 +31,9 @@ const letters = Object.keys(grouped).sort();
 ---
 
 
-<div class="grid gap-6 grid-cols-3">
-{
-	letters.map((letter) => (
-		<div class="file-group">
+<div class="files-grid">
+	{letters.map((letter) => (
+		<div class="files">
 			<h3 class="text-3xl">{letter}</h3>
 			<ul>
 				{grouped[letter]?.map((file) => (
@@ -42,6 +43,5 @@ const letters = Object.keys(grouped).sort();
 				))}
 			</ul>
 		</div>
-	))
-}
+	))}
 </div>

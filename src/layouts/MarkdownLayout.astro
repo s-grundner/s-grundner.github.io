@@ -3,6 +3,7 @@ import Separator from "../components/Separator.astro";
 import TOC from "../components/TOC.astro";
 import Tags from "../components/Tags.astro";
 import "../styles/callout.css";
+import "../styles/markdown.css";
 
 interface Props {
 	headings: {
@@ -18,8 +19,9 @@ const needsTOC = headings && headings.length > 1;
 const needsTags = tags && tags.length > 0;
 ---
 
-<article class="flex">
-	<div class="markdown-wrapper flex-1"><slot /></div>
+<article class="lg:flex">
+	<div class="markdown-wrapper lg:flex-1"><slot /></div>
+	<div class="invisible lg:visible">
 	{
 		needsTOC && needsTags && (
 			<div class="sidebar">
@@ -29,4 +31,5 @@ const needsTags = tags && tags.length > 0;
 			</div>
 		)
 	}
+	</div>
 </article>

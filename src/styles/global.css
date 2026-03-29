@@ -1,15 +1,12 @@
 @import "tailwindcss";
 @import "@catppuccin/tailwindcss/frappe.css";
 
-@media (prefers-color-scheme: light) {}
-
 @layer base {
 
 	html,
 	body {
 		@apply bg-ctp-base text-ctp-text;
-		/* font-family: "Vollkorn", serif; */
-		font-family: "Nunito", sans-serif;
+		font-family: "SN Pro", sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 400;
 		font-style: normal;
@@ -27,10 +24,20 @@
 	}
 
 	footer {
-		@apply text-ctp-subtext0;
-		display: flex;
-		justify-content: space-around;
+		@apply mt-10 text-center p-4 bg-ctp-mantle;
 	}
+
+	header {
+		@apply p-4 bg-ctp-mantle;
+	}
+}
+
+.footer-grid {
+	@apply flex text-ctp-subtext0 justify-around;
+}
+
+.footer-section {
+	@apply mb-4 text-ctp-subtext0;
 }
 
 .sidebar {
@@ -41,6 +48,13 @@
 	border-radius: 0.5rem;
 	align-self: flex-start;
 	margin-left: 10px;
+}
+
+.theme-icon {
+	@apply sticky;
+	bottom: 10pt;
+	margin-left: auto;
+	margin-right: 10pt;
 }
 
 .toc-item {
@@ -57,62 +71,6 @@
 	@apply inline-block mr-1 px-2 rounded-full mb-1 bg-ctp-mauve text-ctp-base;
 }
 
-.markdown-wrapper {
-	h1 {
-		@apply text-5xl mt-4 mb-4 text-ctp-lavender;
-	}
-
-	h2 {
-		@apply text-4xl mt-6 mb-4 text-ctp-blue;
-	}
-
-	h3 {
-		@apply text-3xl mt-5 mb-3 text-ctp-sapphire;
-	}
-
-	ul {
-		@apply list-disc list-inside;
-		ul {
-			@apply pl-6;
-		}
-	}
-
-	mjx-container[jax="SVG"] {
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	mjx-container[display="true"] {
-		@apply lg:overflow-x-auto overflow-x-scroll;
-
-		&>svg {
-			display: block;
-			margin: auto;
-		}
-	}
-
-	table {
-		@apply table-auto border mb-4 w-full border-ctp-surface1;
-
-		th,
-		td {
-			@apply px-4 py-2 border border-ctp-surface1;
-		}
-
-		th {
-			@apply bg-ctp-surface0 text-ctp-text;
-		}
-	}
-
-	a {
-		@apply underline text-ctp-blue;
-
-		&:hover {
-			@apply text-ctp-sky;
-		}
-	}
-}
-
 .lucide-icon-svg {
 	display: inline-block;
 	width: 1em;
@@ -121,18 +79,18 @@
 	stroke: currentColor;
 }
 
-.nav-bar {
-	@apply p-4 flex justify-around bg-ctp-mantle;
-}
-
-.footer {
-	@apply mt-10 text-center p-4 bg-ctp-mantle;
-}
-
-.footer-section {
-	@apply mb-4 text-ctp-subtext0;
-}
-
 .topic-card {
 	@apply bg-ctp-mantle border border-ctp-surface1 rounded-lg p-4 mb-4;
+}
+
+.topic-card-grid {
+	@apply grid grid-cols-1 gap-6;
+}
+
+.files {
+	@apply overflow-hidden text-ellipsis;
+}
+
+.files-grid {
+	@apply grid md:grid-cols-3 sm:grid-cols-1 gap-3;
 }
