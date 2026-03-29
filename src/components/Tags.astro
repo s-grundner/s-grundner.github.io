@@ -12,6 +12,7 @@ const { tags } = Astro.props;
 			<h3 class="text-2xl">Tags</h3>
 			<ul>
 				{tags.map((tag) => (
+					// link to tag pane
 					<li class="pillbox">{tag}</li>
 				))}
 			</ul>

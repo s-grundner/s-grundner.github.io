@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
+    "@catppuccin/palette": "^1.8.0",
     "@lucide/astro": "^0.564.0",
     "@r4ai/remark-callout": "^0.6.2",
     "@tailwindcss/vite": "^4.1.17",
@@ -28,6 +29,7 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@catppuccin/tailwindcss": "^1.0.0",
     "patch-package": "^8.0.1"
   }
 }

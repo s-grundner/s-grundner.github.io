@@ -1,11 +1,18 @@
 @import "tailwindcss";
+@import "@catppuccin/tailwindcss/frappe.css";
+
+@media (prefers-color-scheme: light) {}
 
 @layer base {
 
 	html,
 	body {
-		@apply bg-orange-50 text-gray-900;
-		font-family: 'Noto Sans', sans-serif;
+		@apply bg-ctp-base text-ctp-text;
+		/* font-family: "Vollkorn", serif; */
+		font-family: "Nunito", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
 		line-height: 1.6;
 		display: flex;
 		flex-direction: column;
@@ -13,20 +20,21 @@
 	}
 
 	main {
-		max-width: 75%;
 		@apply m-auto pb-10 pt-10;
+		max-width: 75%;
 		flex: 1;
 		width: 100%;
 	}
 
 	footer {
+		@apply text-ctp-subtext0;
 		display: flex;
 		justify-content: space-around;
 	}
 }
 
 .sidebar {
-	@apply w-64 p-4;
+	@apply w-64 p-4 bg-ctp-mantle border border-ctp-surface1 rounded-lg;
 	position: sticky;
 	top: 10px;
 	border: 1px solid #ccc;
@@ -46,25 +54,24 @@
 }
 
 .pillbox {
-	@apply inline-block mr-1 px-2 rounded-full bg-indigo-200 mb-1;
+	@apply inline-block mr-1 px-2 rounded-full mb-1 bg-ctp-mauve text-ctp-base;
 }
 
 .markdown-wrapper {
 	h1 {
-		@apply text-5xl mt-4 mb-4;
+		@apply text-5xl mt-4 mb-4 text-ctp-lavender;
 	}
 
 	h2 {
-		@apply text-4xl mt-6 mb-4;
+		@apply text-4xl mt-6 mb-4 text-ctp-blue;
 	}
 
 	h3 {
-		@apply text-3xl mt-5 mb-3;
+		@apply text-3xl mt-5 mb-3 text-ctp-sapphire;
 	}
 
 	ul {
 		@apply list-disc list-inside;
-
 		ul {
 			@apply pl-6;
 		}
@@ -85,21 +92,24 @@
 	}
 
 	table {
-		@apply table-auto border-collapse border mb-4;
-		width: 100%;
+		@apply table-auto border mb-4 w-full border-ctp-surface1;
 
 		th,
 		td {
-			@apply border px-4 py-2;
+			@apply px-4 py-2 border border-ctp-surface1;
 		}
 
 		th {
-			@apply bg-orange-200;
+			@apply bg-ctp-surface0 text-ctp-text;
 		}
 	}
 
 	a {
-		@apply underline;
+		@apply underline text-ctp-blue;
+
+		&:hover {
+			@apply text-ctp-sky;
+		}
 	}
 }
 
@@ -112,11 +122,17 @@
 }
 
 .nav-bar {
-	@apply p-4;
-	display: flex;
-	justify-content: space-around;
+	@apply p-4 flex justify-around bg-ctp-mantle;
+}
+
+.footer {
+	@apply mt-10 text-center p-4 bg-ctp-mantle;
 }
 
 .footer-section {
-	@apply mb-4;
+	@apply mb-4 text-ctp-subtext0;
+}
+
+.topic-card {
+	@apply bg-ctp-mantle border border-ctp-surface1 rounded-lg p-4 mb-4;
 }

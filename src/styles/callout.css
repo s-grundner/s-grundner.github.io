@@ -1,17 +1,18 @@
 @import "tailwindcss";
+@import "@catppuccin/tailwindcss/frappe.css";
+@config "../../tailwind.config.js";
 
 /* https://github.com/r4ai/remark-callout */
 
 [data-callout] {
 	& {
-		@apply my-6 space-y-2 rounded-lg border border-blue-600/20 bg-blue-400/20 p-4 pb-5 dark:border-blue-800/20 dark:bg-blue-600/10;
+		@apply my-6 space-y-2 rounded-lg border p-4 pb-5 bg-callout-neutral-bg border-callout-neutral-border
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply p-0 font-bold text-blue-500;
+			@apply p-0 font-bold text-callout-neutral-text;
 			vertical-align: middle;
-			/* flex-row here but only the lucide icons before and after*/
 		}
 
 		&:not:only-child {
@@ -69,7 +70,6 @@ details[data-callout]>summary[data-callout-title] {
 	&::marker {
 		content: "";
 	}
-
 }
 
 
@@ -81,12 +81,12 @@ details[data-callout][open]>summary[data-callout-title]::after {
 
 [data-callout][data-callout-type="satz"] {
 	& {
-		@apply border-red-400/20 bg-red-300/20 dark:border-red-700/20 dark:bg-red-600/10;
+		@apply bg-callout-theorem-bg border-callout-theorem-border;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-rose-400;
+			@apply text-callout-theorem-text;
 		}
 
 		&:empty::after {
@@ -102,12 +102,12 @@ details[data-callout][open]>summary[data-callout-title]::after {
 
 [data-callout][data-callout-type="def"] {
 	& {
-		@apply border-purple-600/20 bg-purple-400/20 dark:border-purple-800/20 dark:bg-purple-600/10;
+		@apply bg-callout-def-bg border-callout-def-border;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-purple-600;
+			@apply text-callout-def-text;
 		}
 
 		&:empty::after {
@@ -121,16 +121,21 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	}
 }
 
+[data-callout][data-callout-type="todo"],
 [data-callout][data-callout-type="info"] {
 	& {
-		@apply border-blue-600/20 bg-blue-400/20 dark:border-blue-800/20 dark:bg-blue-600/10;
+		@apply bg-callout-info-bg border-callout-info-border;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-blue-500;
+			@apply text-callout-info-text;
 		}
+	}
+}
 
+[data-callout][data-callout-type="info"] {
+	&>[data-callout-title] {
 		&:empty::after {
 			content: "Info";
 		}
@@ -143,15 +148,7 @@ details[data-callout][open]>summary[data-callout-title]::after {
 }
 
 [data-callout][data-callout-type="todo"] {
-	& {
-		@apply border-blue-600/20 bg-blue-400/20 dark:border-blue-800/20 dark:bg-blue-600/10;
-	}
-
 	&>[data-callout-title] {
-		& {
-			@apply text-blue-500;
-		}
-
 		&:empty::after {
 			content: "ToDo";
 		}
@@ -163,18 +160,40 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	}
 }
 
+/* IMPORTANT */
+
 [data-callout][data-callout-type="abstract"],
 [data-callout][data-callout-type="summary"],
+[data-callout][data-callout-type="important"],
 [data-callout][data-callout-type="tldr"] {
 	& {
-		@apply border-cyan-600/20 bg-cyan-400/20 dark:border-cyan-800/20 dark:bg-cyan-600/10;
+		@apply bg-callout-important-bg border-callout-important-border;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-cyan-500;
+			@apply text-callout-important-text;
+		}
+	}
+}
+
+[data-callout][data-callout-type="important"] {
+	&>[data-callout-title] {
+		&::before {
+			/* lucide:flame */
+			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTguNSAxNC41QTIuNSAyLjUgMCAwIDAgMTEgMTJjMC0xLjM4LS41LTItMS0zYy0xLjA3Mi0yLjE0My0uMjI0LTQuMDU0IDItNmMuNSAyLjUgMiA0LjkgNCA2LjVjMiAxLjYgMyAzLjUgMyA1LjVhNyA3IDAgMSAxLTE0IDBjMC0xLjE1My40MzMtMi4yOTQgMS0zYTIuNSAyLjUgMCAwIDAgMi41IDIuNSIvPjwvc3ZnPg==");
 		}
 
+		&:empty::after {
+			content: "Important";
+		}
+	}
+}
+
+[data-callout][data-callout-type="abstract"],
+[data-callout][data-callout-type="summary"],
+[data-callout][data-callout-type="tldr"] {
+	&>[data-callout-title] {
 		&::before {
 			/* lucide:clipboard-list */
 			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3Qgd2lkdGg9IjgiIGhlaWdodD0iNCIgeD0iOCIgeT0iMiIgcng9IjEiIHJ5PSIxIi8+PHBhdGggZD0iTTE2IDRoMmEyIDIgMCAwIDEgMiAydjE0YTIgMiAwIDAgMS0yIDJINmEyIDIgMCAwIDEtMi0yVjZhMiAyIDAgMCAxIDItMmgybTQgN2g0bS00IDVoNG0tOC01aC4wMU04IDE2aC4wMSIvPjwvZz48L3N2Zz4=");
@@ -194,14 +213,16 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	content: "TL;DR";
 }
 
+/* HINT */
+
 [data-callout][data-callout-type="hint"] {
 	& {
-		@apply border-orange-500/20 bg-yellow-500/20
+		@apply border-callout-hint-border bg-callout-hint-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-orange-500;
+			@apply text-callout-hint-text;
 		}
 
 		&::before {
@@ -215,38 +236,18 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	}
 }
 
-
-[data-callout][data-callout-type="important"] {
-	& {
-		@apply border-cyan-600/20 bg-cyan-400/20 dark:border-cyan-800/20 dark:bg-cyan-600/10;
-	}
-
-	&>[data-callout-title] {
-		& {
-			@apply text-cyan-500;
-		}
-
-		&::before {
-			/* lucide:flame */
-			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTguNSAxNC41QTIuNSAyLjUgMCAwIDAgMTEgMTJjMC0xLjM4LS41LTItMS0zYy0xLjA3Mi0yLjE0My0uMjI0LTQuMDU0IDItNmMuNSAyLjUgMiA0LjkgNCA2LjVjMiAxLjYgMyAzLjUgMyA1LjVhNyA3IDAgMSAxLTE0IDBjMC0xLjE1My40MzMtMi4yOTQgMS0zYTIuNSAyLjUgMCAwIDAgMi41IDIuNSIvPjwvc3ZnPg==");
-		}
-
-		&:empty::after {
-			content: "Important";
-		}
-	}
-}
+/* SUCCESS */
 
 [data-callout][data-callout-type="success"],
 [data-callout][data-callout-type="check"],
 [data-callout][data-callout-type="done"] {
 	& {
-		@apply border-green-600/20 bg-green-400/20 dark:border-green-800/20 dark:bg-green-600/10;
+		@apply border-callout-success-border bg-callout-success-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-green-500;
+			@apply text-callout-success-text;
 		}
 
 		&::before {
@@ -270,12 +271,12 @@ details[data-callout][open]>summary[data-callout-title]::after {
 
 [data-callout][data-callout-type="question"] {
 	& {
-		@apply border-orange-600/20 bg-orange-400/20 dark:border-orange-800/20 dark:bg-orange-600/10;
+		@apply border-callout-question-border bg-callout-question-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-orange-500;
+			@apply text-callout-question-text;
 		}
 
 		&::before {
@@ -289,38 +290,23 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	}
 }
 
-[data-callout][data-callout-type="warning"] {
-	& {
-		@apply border-orange-600/20 bg-orange-400/20 dark:border-orange-800/20 dark:bg-orange-600/10;
-	}
+/* DANGER */
 
+[data-callout][data-callout-type="fail"],
+[data-callout][data-callout-type="danger"],
+[data-callout][data-callout-type="error"] {
+	& {
+		@apply border-callout-danger-border bg-callout-danger-bg;
+	}
 	&>[data-callout-title] {
 		& {
-			@apply text-orange-500;
+			@apply text-callout-danger-text;
 		}
-
-		&::before {
-			/* lucide:triangle-alert */
-			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTIxLjczIDE4bC04LTE0YTIgMiAwIDAgMC0zLjQ4IDBsLTggMTRBMiAyIDAgMCAwIDQgMjFoMTZhMiAyIDAgMCAwIDEuNzMtM00xMiA5djRtMCA0aC4wMSIvPjwvc3ZnPg==");
-		}
-	}
-
-	&:empty::after {
-		content: "Warning";
 	}
 }
 
-
 [data-callout][data-callout-type="fail"] {
-	& {
-		@apply border-red-600/20 bg-red-400/20 dark:border-red-800/20 dark:bg-red-600/10;
-	}
-
 	&>[data-callout-title] {
-		& {
-			@apply text-red-500;
-		}
-
 		&::before {
 			/* lucide:check */
 			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTIwIDZMOSAxN2wtNS01Ii8+PC9zdmc+");
@@ -334,15 +320,7 @@ details[data-callout][open]>summary[data-callout-title]::after {
 
 [data-callout][data-callout-type="danger"],
 [data-callout][data-callout-type="error"] {
-	& {
-		@apply border-red-600/20 bg-red-400/20 dark:border-red-800/20 dark:bg-red-600/10;
-	}
-
 	&>[data-callout-title] {
-		& {
-			@apply text-red-500;
-		}
-
 		&::before {
 			/* lucide:zap */
 			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXphcCI+PHBhdGggZD0iTTQgMTRhMSAxIDAgMCAxLS43OC0xLjYzbDkuOS0xMC4yYS41LjUgMCAwIDEgLjg2LjQ2bC0xLjkyIDYuMDJBMSAxIDAgMCAwIDEzIDEwaDdhMSAxIDAgMCAxIC43OCAxLjYzbC05LjkgMTAuMmEuNS41IDAgMCAxLS44Ni0uNDZsMS45Mi02LjAyQTEgMSAwIDAgMCAxMSAxNHoiLz48L3N2Zz4=");
@@ -358,16 +336,35 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	content: "Error";
 }
 
-[data-callout][data-callout-type="bug"] {
+/* WARNING */
+
+[data-callout][data-callout-type="bug"],
+[data-callout][data-callout-type="warning"] {
 	& {
-		@apply border-red-600/20 bg-red-400/20 dark:border-red-800/20 dark:bg-red-600/10;
+		@apply border-callout-warning-border bg-callout-warning-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-red-500;
+			@apply text-callout-warning-text;
 		}
+	}
+}
 
+[data-callout][data-callout-type="warning"] {
+	&>[data-callout-title] {
+		&::before {
+			/* lucide:triangle-alert */
+			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTIxLjczIDE4bC04LTE0YTIgMiAwIDAgMC0zLjQ4IDBsLTggMTRBMiAyIDAgMCAwIDQgMjFoMTZhMiAyIDAgMCAwIDEuNzMtM00xMiA5djRtMCA0aC4wMSIvPjwvc3ZnPg==");
+		}
+	}
+
+	&:empty::after {
+		content: "Warning";
+	}
+}
+[data-callout][data-callout-type="bug"] {
+	&>[data-callout-title] {
 		&::before {
 			/* lucide:bug */
 			mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0ibTggMmwxLjg4IDEuODhtNC4yNCAwTDE2IDJNOSA3LjEzdi0xYTMuMDAzIDMuMDAzIDAgMSAxIDYgMHYxIi8+PHBhdGggZD0iTTEyIDIwYy0zLjMgMC02LTIuNy02LTZ2LTNhNCA0IDAgMCAxIDQtNGg0YTQgNCAwIDAgMSA0IDR2M2MwIDMuMy0yLjcgNi02IDZtMCAwdi05Ii8+PHBhdGggZD0iTTYuNTMgOUM0LjYgOC44IDMgNy4xIDMgNW0zIDhIMm0xIDhjMC0yLjEgMS43LTMuOSAzLjgtNE0yMC45NyA1YzAgMi4xLTEuNiAzLjgtMy41IDRNMjIgMTNoLTRtLS44IDRjMi4xLjEgMy44IDEuOSAzLjggNCIvPjwvZz48L3N2Zz4=");
@@ -381,12 +378,12 @@ details[data-callout][open]>summary[data-callout-title]::after {
 
 [data-callout][data-callout-type="example"] {
 	& {
-		@apply border-purple-600/20 bg-purple-400/20 dark:border-purple-800/20 dark:bg-purple-600/10;
+		@apply border-callout-example-border bg-callout-example-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-purple-500;
+			@apply text-callout-example-text;
 		}
 
 		&::before {
@@ -400,15 +397,17 @@ details[data-callout][open]>summary[data-callout-title]::after {
 	content: "Example";
 }
 
+/* NEUTRAL */
+
 [data-callout][data-callout-type="quote"],
 [data-callout][data-callout-type="cite"] {
 	& {
-		@apply border-zinc-600/20 bg-zinc-400/20 dark:border-zinc-800/20 dark:bg-zinc-600/15;
+		@apply border-callout-neutral-border bg-callout-neutral-bg;
 	}
 
 	&>[data-callout-title] {
 		& {
-			@apply text-zinc-500;
+			@apply text-callout-neutral-text;
 		}
 
 		&::before {
