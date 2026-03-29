@@ -16,6 +16,7 @@ const currentEntries = await getCollection(
 );
 
 const idxEntries = currentEntries.filter((e) => e.id.includes("index"));
+
 const fileEntries = currentEntries
 	.filter((e) => !e.id.includes("index"))
 	.filter((e) => e.data.title !== "Untitled");

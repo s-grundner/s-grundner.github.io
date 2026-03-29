@@ -1,11 +1,15 @@
 @import "tailwindcss";
+@import "@catppuccin/tailwindcss/frappe.css";
 
 @layer base {
 
 	html,
 	body {
-		@apply bg-orange-50 text-gray-900;
-		font-family: 'Noto Sans', sans-serif;
+		@apply bg-ctp-base text-ctp-text;
+		font-family: "SN Pro", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
 		line-height: 1.6;
 		display: flex;
 		flex-direction: column;
@@ -13,26 +17,44 @@
 	}
 
 	main {
-		max-width: 75%;
 		@apply m-auto pb-10 pt-10;
+		max-width: 75%;
 		flex: 1;
 		width: 100%;
 	}
 
 	footer {
-		display: flex;
-		justify-content: space-around;
+		@apply mt-10 text-center p-4 bg-ctp-mantle;
+	}
+
+	header {
+		@apply p-4 bg-ctp-mantle;
 	}
 }
 
+.footer-grid {
+	@apply flex text-ctp-subtext0 justify-around;
+}
+
+.footer-section {
+	@apply mb-4 text-ctp-subtext0;
+}
+
 .sidebar {
-	@apply w-64 p-4;
+	@apply w-64 p-4 bg-ctp-mantle border border-ctp-surface1 rounded-lg;
 	position: sticky;
 	top: 10px;
 	border: 1px solid #ccc;
 	border-radius: 0.5rem;
 	align-self: flex-start;
 	margin-left: 10px;
+}
+
+.theme-icon {
+	@apply sticky;
+	bottom: 10pt;
+	margin-left: auto;
+	margin-right: 10pt;
 }
 
 .toc-item {
@@ -46,61 +68,7 @@
 }
 
 .pillbox {
-	@apply inline-block mr-1 px-2 rounded-full bg-indigo-200 mb-1;
-}
-
-.markdown-wrapper {
-	h1 {
-		@apply text-5xl mt-4 mb-4;
-	}
-
-	h2 {
-		@apply text-4xl mt-6 mb-4;
-	}
-
-	h3 {
-		@apply text-3xl mt-5 mb-3;
-	}
-
-	ul {
-		@apply list-disc list-inside;
-
-		ul {
-			@apply pl-6;
-		}
-	}
-
-	mjx-container[jax="SVG"] {
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	mjx-container[display="true"] {
-		@apply lg:overflow-x-auto overflow-x-scroll;
-
-		&>svg {
-			display: block;
-			margin: auto;
-		}
-	}
-
-	table {
-		@apply table-auto border-collapse border mb-4;
-		width: 100%;
-
-		th,
-		td {
-			@apply border px-4 py-2;
-		}
-
-		th {
-			@apply bg-orange-200;
-		}
-	}
-
-	a {
-		@apply underline;
-	}
+	@apply inline-block mr-1 px-2 rounded-full mb-1 bg-ctp-mauve text-ctp-base;
 }
 
 .lucide-icon-svg {
@@ -111,12 +79,18 @@
 	stroke: currentColor;
 }
 
-.nav-bar {
-	@apply p-4;
-	display: flex;
-	justify-content: space-around;
+.topic-card {
+	@apply bg-ctp-mantle border border-ctp-surface1 rounded-lg p-4 mb-4;
 }
 
-.footer-section {
-	@apply mb-4;
+.topic-card-grid {
+	@apply grid grid-cols-1 gap-6;
+}
+
+.files {
+	@apply overflow-hidden text-ellipsis;
+}
+
+.files-grid {
+	@apply grid md:grid-cols-3 sm:grid-cols-1 gap-3;
 }
