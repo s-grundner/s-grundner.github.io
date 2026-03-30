@@ -4,11 +4,11 @@
 
 .markdown-wrapper {
 	h1 {
-		@apply pb-4 overflow-x-scroll md:overflow-x-clip;
+		@apply pb-4 overflow-x-auto;
 	}
 
 	h2 {
-		@apply pt-4 pb-4 overflow-x-scroll md:overflow-x-clip;
+		@apply pt-4 pb-4 overflow-x-auto;
 	}
 
 	h3 {
@@ -21,7 +21,7 @@
 	}
 
 	mjx-container[display="true"] {
-		@apply overflow-x-scroll lg:overflow-x-auto;
+		@apply overflow-x-auto;
 
 		&>svg {
 			display: block;
@@ -36,6 +36,7 @@
 			@apply text-ctp-sky;
 		}
 	}
+	
 	ul {
 		@apply list-disc list-inside;
 
