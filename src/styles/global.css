@@ -70,8 +70,7 @@ table {
 }
 
 .sidebar {
-	@apply sticky w-64 p-4 bg-ctp-base border-2 border-ctp-surface1 rounded-lg top-2 ml-2.5;
-	align-self: flex-start;
+	@apply sticky w-64 p-4 bg-ctp-base border-2 border-ctp-surface1 rounded-lg top-2;
 }
 
 .toc-item {

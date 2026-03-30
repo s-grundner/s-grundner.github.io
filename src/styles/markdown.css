@@ -4,7 +4,7 @@
 
 .markdown-wrapper {
 	h1 {
-		@apply pb-4 overflow-x-auto;
+		@apply pb-4 overflow-x-auto wrap-break-word;
 	}
 
 	h2 {
@@ -44,4 +44,8 @@
 			@apply pl-6;
 		}
 	}
+}
+
+.astro-code {
+	@apply overflow-x-scroll shrink;
 }
