@@ -1,18 +1,42 @@
+---
+const searchPlaceHolder = "Search...";
+---
+
 <div class="search-container relative">
 	<input
 		id="search-input"
 		type="text"
-		placeholder="Search..."
-		class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+		placeholder={searchPlaceHolder}
+		class="w-full px-4 py-2 border bg-ctp-mantle border-ctp-surface1 rounded-lg focus:outline-none focus:ring-2 focus:ring-ctp-flamingo"
 	/>
 	<ul
 		id="search-results"
-		class="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
+		class="absolute z-10 w-full mt-2 bg-ctp-base border border-ctp-flamingo rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
 	>
 	</ul>
 </div>
 
+<style>
+	input:-webkit-autofill,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 1000px bg-ctp-mantle inset !important;
+		-webkit-text-fill-color: text-ctp-text !important;
+		caret-color: var(--color-ctp-text);
+		border-radius: inherit;
+	}
+</style>
+
 <script>
+	type SearchItem = {
+		pathname?: string;
+		url?: string;
+		frontmatter?: {
+			title?: string;
+			aliases?: string[];
+		};
+	};
 	const searchInput = document.getElementById(
 		"search-input",
 	) as HTMLInputElement;
@@ -74,19 +98,35 @@
 
 			if (results.length > 0) {
 				searchResults.classList.remove("hidden");
-				results.slice(0, 10).forEach((result: any) => {
-					const item = result.item;
-					console.log(item);
-					const li = document.createElement("li");
-					li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
-					li.innerHTML = `
-            <a href="${item.pathname || item.url}" class="block">
-              <div class="font-bold text-gray-800">${item.frontmatter?.title || "Untitled"}</div>
-              <div class="text-sm text-gray-600 truncate">${item.frontmatter?.aliases || "" }</div>
-            </a>
-          `;
-					searchResults.appendChild(li);
-				});
+				results
+					.slice(0, 10)
+					.forEach(({ item }: { item: SearchItem }) => {
+						console.log(item);
+
+						const li = document.createElement("li");
+						li.className =
+							"px-4 py-2 hover:bg-ctp-mantle cursor-pointer";
+
+						const a = document.createElement("a");
+						a.href = item.pathname || item.url || "";
+						a.className = "block";
+
+						const title = document.createElement("div");
+						title.className = "font-bold text-ctp-text1";
+						title.textContent =
+							item.frontmatter?.title || "Untitled";
+
+						const aliases = document.createElement("div");
+						aliases.className =
+							"text-sm text-ctp-subtext1 truncate";
+						aliases.textContent =
+							item.frontmatter?.aliases?.join(", ") || "";
+
+						a.append(title, aliases);
+						li.appendChild(a);
+
+						searchResults.appendChild(li);
+					});
 			} else {
 				searchResults.classList.add("hidden");
 			}

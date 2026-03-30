@@ -21,7 +21,7 @@ const needsTags = tags && tags.length > 0;
 
 <article class="lg:flex">
 	<div class="markdown-wrapper lg:flex-1"><slot /></div>
-	<div class="invisible lg:visible">
+	<div class="hidden lg:inline">
 	{
 		needsTOC && needsTags && (
 			<div class="sidebar">

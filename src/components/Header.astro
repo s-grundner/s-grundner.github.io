@@ -4,12 +4,14 @@ import Tabs from "./Navigation.astro";
 import LogoMenu from "./LogoMenu.astro";
 ---
 
-<header class="header">
-	<nav>
-		<div class="grid grid-cols-[24px_auto_24px] justify-stretch text-center">
-			<div> <LogoMenu /> </div>
+<header>
+	<nav class="my-auto">
+		<div class="md:hidden grid grid-cols-2 justify-stretch">
+			<div class="mr-auto"> <LogoMenu /> </div>
+			<div class="ml-auto"> <BurgerMenu /> </div>
+		</div>
+		<div class="hidden md:inline text-center">
 			<div class="flex justify-around"> <Tabs /> </div>
-			<div> <BurgerMenu /> </div>
 		</div>
 	</nav>
 </header>
