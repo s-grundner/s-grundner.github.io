@@ -9,7 +9,7 @@ const { tags } = Astro.props;
 	// Only Display Tags if any exist
 	tags && tags.length > 0 && (
 		<nav>
-			<h3 class="text-2xl">Tags</h3>
+			<h3 class="mb-3">Tags</h3>
 			<ul>
 				{tags.map((tag) => (
 					// link to tag pane

@@ -10,6 +10,8 @@ import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-lin
 
 import tailwindcss from '@tailwindcss/vite';
 import remarkIconize from './plugins/remark-iconize';
+import rehypeWrapTables from './plugins/rehype-tables';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,6 +22,7 @@ export default defineConfig({
 	markdown: {
 		rehypePlugins: [
 			rehypeAstroRelativeMarkdownLinks,
+			rehypeWrapTables,
 			[rehypeMathjax, {}]
 		],
 		remarkPlugins: [

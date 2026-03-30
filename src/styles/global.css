@@ -17,27 +17,56 @@
 	}
 
 	main {
-		@apply m-auto pb-10 pt-10;
+		@apply m-auto pt-10;
 		max-width: 75%;
 		flex: 1;
 		width: 100%;
 	}
 
 	footer {
-		@apply mt-10 text-center p-4 bg-ctp-mantle;
+		@apply text-center p-4 bg-ctp-mantle;
 	}
 
 	header {
-		@apply p-4 bg-ctp-mantle;
+		@apply p-4 bg-ctp-mantle sticky top-0;
+	}
+}
+
+h1 {
+	@apply text-3xl md:text-5xl text-ctp-flamingo;
+}
+
+h2 {
+	@apply text-2xl md:text-4xl text-ctp-rosewater;
+}
+
+h3 {
+	@apply text-2xl md:text-3xl text-ctp-lavender;
+}
+
+table {
+	@apply border w-full mt-4 mb-4 border-ctp-surface1;
+
+	th,
+	td {
+		@apply px-4 py-2 border border-ctp-surface1;
+	}
+
+	th {
+		@apply bg-ctp-surface0 text-ctp-text;
 	}
 }
 
 .footer-grid {
-	@apply flex text-ctp-subtext0 justify-around;
+	@apply grid grid-cols-1 md:grid-cols-3 text-ctp-subtext0 justify-between;
 }
 
 .footer-section {
 	@apply mb-4 text-ctp-subtext0;
+}
+
+.footer-heading {
+	@apply text-xl text-ctp-lavender;
 }
 
 .sidebar {
@@ -48,13 +77,6 @@
 	border-radius: 0.5rem;
 	align-self: flex-start;
 	margin-left: 10px;
-}
-
-.theme-icon {
-	@apply sticky;
-	bottom: 10pt;
-	margin-left: auto;
-	margin-right: 10pt;
 }
 
 .toc-item {
@@ -84,7 +106,7 @@
 }
 
 .topic-card-grid {
-	@apply grid grid-cols-1 gap-6;
+	@apply grid grid-cols-1 gap-2;
 }
 
 .files {
@@ -92,5 +114,5 @@
 }
 
 .files-grid {
-	@apply grid md:grid-cols-3 sm:grid-cols-1 gap-3;
+	@apply grid grid-cols-1 md:grid-cols-3 gap-3;
 }
