@@ -1,17 +1,19 @@
 ---
-import BurgerMenu from "./BurgerMenu.astro";
-import Tabs from "./Navigation.astro";
-import LogoMenu from "./LogoMenu.astro";
+import BurgerMenu from "./buttons/BurgerMenu.astro";
+import Navigation from "./Navigation.astro";
+import LogoMenu from "./buttons/LogoMenu.astro";
+import Home from "./buttons/Home.astro";
 ---
 
 <header>
-	<nav class="my-auto">
-		<div class="md:hidden grid grid-cols-2 justify-stretch">
-			<div class="mr-auto"> <LogoMenu /> </div>
-			<div class="ml-auto"> <BurgerMenu /> </div>
+	<nav>
+		<div class="md:hidden grid grid-cols-3 justify-stretch my-auto">
+			<div class="mr-auto my-auto p-4"> <LogoMenu /> </div>
+			<div class="text-xl text-ctp-lavender m-auto"> <Home display="OSB" /> </div>
+			<div class="ml-auto my-auto p-4"> <BurgerMenu /> </div>
 		</div>
-		<div class="hidden md:inline text-center">
-			<div class="flex justify-around"> <Tabs /> </div>
+		<div class="my-auto hidden md:inline text-center">
+			<div class="flex justify-around p-4"> <Navigation /> </div>
 		</div>
 	</nav>
 </header>

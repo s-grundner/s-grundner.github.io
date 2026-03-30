@@ -11,7 +11,7 @@ const searchPlaceHolder = "Search...";
 	/>
 	<ul
 		id="search-results"
-		class="absolute z-10 w-full mt-2 bg-ctp-base border border-ctp-flamingo rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
+		class="absolute z-10 w-full mt-2 bg-ctp-base border-2 border-ctp-flamingo rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
 	>
 	</ul>
 </div>
@@ -69,9 +69,9 @@ const searchPlaceHolder = "Search...";
 			const options = {
 				keys: [
 					"frontmatter.title",
-					"content",
 					"frontmatter.aliases",
 					"frontmatter.description",
+					"content",
 				],
 				includeScore: true,
 				threshold: 0.4,

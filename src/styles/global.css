@@ -28,7 +28,7 @@
 	}
 
 	header {
-		@apply p-4 bg-ctp-mantle sticky md:static top-0;
+		@apply bg-ctp-mantle sticky md:static top-0;
 	}
 }
 
