@@ -11,7 +11,7 @@ const searchPlaceHolder = "Search...";
 	/>
 	<ul
 		id="search-results"
-		class="absolute z-10 w-full mt-2 bg-ctp-base border border-ctp-flamingo rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
+		class="absolute z-10 w-full mt-2 bg-ctp-base border-2 border-ctp-flamingo rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"
 	>
 	</ul>
 </div>
@@ -34,9 +34,15 @@ const searchPlaceHolder = "Search...";
 		url?: string;
 		frontmatter?: {
 			title?: string;
-			aliases?: string[];
+			aliases?: string[] | string;
 		};
 	};
+
+	// aliases could be a string or a string[].
+	// convert to array for .join()
+	const toArray = <T,>(value: T | T[] | undefined | null): T[] =>
+		Array.isArray(value) ? value : value != null ? [value] : [];
+	
 	const searchInput = document.getElementById(
 		"search-input",
 	) as HTMLInputElement;
@@ -63,9 +69,9 @@ const searchPlaceHolder = "Search...";
 			const options = {
 				keys: [
 					"frontmatter.title",
-					"content",
 					"frontmatter.aliases",
 					"frontmatter.description",
+					"content",
 				],
 				includeScore: true,
 				threshold: 0.4,
@@ -114,13 +120,12 @@ const searchPlaceHolder = "Search...";
 						const title = document.createElement("div");
 						title.className = "font-bold text-ctp-text1";
 						title.textContent =
-							item.frontmatter?.title || "Untitled";
+							item.frontmatter?.title ?? "Untitled";
 
 						const aliases = document.createElement("div");
 						aliases.className =
 							"text-sm text-ctp-subtext1 truncate";
-						aliases.textContent =
-							item.frontmatter?.aliases?.join(", ") || "";
+						aliases.textContent = toArray(item.frontmatter?.aliases).join(", ");
 
 						a.append(title, aliases);
 						li.appendChild(a);

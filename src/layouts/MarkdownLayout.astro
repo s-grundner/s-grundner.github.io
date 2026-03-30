@@ -19,11 +19,12 @@ const needsTOC = headings && headings.length > 1;
 const needsTags = tags && tags.length > 0;
 ---
 
-<article class="lg:flex">
-	<div class="markdown-wrapper lg:flex-1"><slot /></div>
-	<div class="hidden lg:inline">
+<article>
+<div class="xl:flex">
+	<div class="markdown-wrapper xl:shrink"><slot /></div>
+	<div class="hidden xl:inline xl:flex-none">
 	{
-		needsTOC && needsTags && (
+		(needsTOC || needsTags) && (
 			<div class="sidebar">
 				{needsTOC && <TOC headings={headings} />}
 				{needsTOC && needsTags && <Separator />}
@@ -32,4 +33,5 @@ const needsTags = tags && tags.length > 0;
 		)
 	}
 	</div>
+</div>
 </article>

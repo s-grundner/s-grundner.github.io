@@ -28,7 +28,7 @@
 	}
 
 	header {
-		@apply p-4 bg-ctp-mantle sticky top-0;
+		@apply bg-ctp-mantle sticky md:static top-0;
 	}
 }
 
@@ -70,13 +70,7 @@ table {
 }
 
 .sidebar {
-	@apply w-64 p-4 bg-ctp-mantle border border-ctp-surface1 rounded-lg;
-	position: sticky;
-	top: 10px;
-	border: 1px solid #ccc;
-	border-radius: 0.5rem;
-	align-self: flex-start;
-	margin-left: 10px;
+	@apply sticky w-64 p-4 bg-ctp-base border-2 border-ctp-surface1 rounded-lg top-2;
 }
 
 .toc-item {
@@ -102,7 +96,7 @@ table {
 }
 
 .topic-card {
-	@apply bg-ctp-mantle border border-ctp-surface1 rounded-lg p-4 mb-4;
+	@apply bg-ctp-mantle border-2 border-ctp-surface1 rounded-lg p-4 mb-4;
 }
 
 .topic-card-grid {
