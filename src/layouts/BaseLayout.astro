@@ -1,8 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ThemeIcon from "../components/ThemeIcon.astro";
-import "../styles/global.css";
+import ThemeSwitch from "../components/ThemeSwitch.astro";
+import "@catppuccin/tailwindcss/frappe.css";
 
 interface Props {
 	title: string;
@@ -12,7 +12,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,13 +31,21 @@ const { title } = Astro.props;
 			rel="stylesheet"
 		/>
 		<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+		<script is:inline>
+			// prevent flash
+			const saved = localStorage.getItem("theme");
+			if (saved === "dark") {
+				console.log(saved);
+				document.documentElement.className = "dark frappe";
+			}
+		</script>
 	</head>
-	<body>
+	<body class="theme-fade">
 		<Header />
 		<main>
 			<slot />
 		</main>
-		<ThemeIcon />
+		<ThemeSwitch />
 		<Footer />
 	</body>
 </html>

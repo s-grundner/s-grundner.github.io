@@ -2,7 +2,6 @@
 @import "@catppuccin/tailwindcss/frappe.css";
 
 @layer base {
-
 	html,
 	body {
 		@apply bg-ctp-base text-ctp-text;
@@ -14,6 +13,9 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		text-align: justify;
+		text-justify: inter-word;
+		hyphens: auto;
 	}
 
 	main {
@@ -33,11 +35,11 @@
 }
 
 h1 {
-	@apply text-3xl md:text-5xl text-ctp-flamingo;
+	@apply pt-4 pb-6 text-3xl md:text-5xl text-ctp-flamingo;
 }
 
 h2 {
-	@apply text-2xl md:text-4xl text-ctp-rosewater;
+	@apply pt-4 pb-6 text-2xl md:text-4xl text-ctp-rosewater;
 }
 
 h3 {
@@ -49,12 +51,24 @@ table {
 
 	th,
 	td {
-		@apply px-4 py-2 border border-ctp-surface1;
+		@apply px-4 py-2 min-w-50 border border-ctp-surface1;
 	}
 
 	th {
 		@apply bg-ctp-surface0 text-ctp-text;
 	}
+}
+
+.theme-fade {
+	@apply transition-colors transition-discrete duration-500;
+}
+
+.theme-switch-icon-dark {
+	@apply hidden frappe:block;
+}
+
+.theme-switch-icon-light {
+	@apply block frappe:hidden;
 }
 
 .footer-grid {
