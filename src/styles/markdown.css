@@ -4,11 +4,11 @@
 
 .markdown-wrapper {
 	h1 {
-		@apply pb-4 overflow-x-auto wrap-break-word;
+		@apply pb-4;
 	}
 
 	h2 {
-		@apply pt-4 pb-4 overflow-x-auto;
+		@apply pt-4 pb-4;
 	}
 
 	h3 {
@@ -41,6 +41,12 @@
 		@apply list-disc list-inside;
 
 		ul {
+			@apply pl-6;
+		}
+	}
+	ol {
+		@apply list-inside list-decimal;
+		ol {
 			@apply pl-6;
 		}
 	}

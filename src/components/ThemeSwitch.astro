@@ -8,27 +8,13 @@ import "../styles/global.css";
 		type="checkbox"
 		id="theme-switch"
 		value="theme-switch"
-		class="hidden"
+		class="hidden peer"
 	/>
 	<label for="theme-switch">
-		<div class="theme-switch-icon-dark"><Sun /></div>
 		<div class="theme-switch-icon-light"><Moon /></div>
+		<div class="theme-switch-icon-dark"><Sun /></div>
 	</label>
 </div>
-<style>
-	.theme-switch-icon-dark {
-		display: none;
-	}
-	.theme-switch-icon-light {
-		display: inline;
-	}
-	:global(.dark) .theme-switch-icon-dark {
-		display: inline;
-	}
-	:global(.dark) .theme-switch-icon-light {
-		display: none;
-	}
-</style>
 <script>
 	const theme = (() => {
 		const localStorageTheme = localStorage?.getItem("theme") ?? "";
